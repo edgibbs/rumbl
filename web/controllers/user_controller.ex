@@ -14,6 +14,7 @@ defmodule Rumbl.UserController do
   end
 
   alias Rumbl.User
+  alias Rumbl.Auth
 
   def new(conn, _params) do
     changeset = User.changeset(%User{})
@@ -25,6 +26,7 @@ defmodule Rumbl.UserController do
     case Repo.insert(changeset) do
       {:ok, user} ->
         conn
+        |> Auth.login(user)
         |> put_flash(:info, "#{user.name} created!")
         |> redirect(to: user_path(conn, :index))
       {:error, changeset} ->
