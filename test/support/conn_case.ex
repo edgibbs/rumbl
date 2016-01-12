@@ -17,15 +17,12 @@ defmodule Rumbl.ConnCase do
 
   using do
     quote do
-      # Import conveniences for testing with connections
       use Phoenix.ConnTest
-
       alias Rumbl.Repo
       import Ecto.Model
       import Ecto.Query, only: [from: 2]
-
       import Rumbl.Router.Helpers
-
+      import Rumbl.TestHelpers
       # The default endpoint for testing
       @endpoint Rumbl.Endpoint
     end
