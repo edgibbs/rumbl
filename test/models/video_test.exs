@@ -15,4 +15,9 @@ defmodule Rumbl.VideoTest do
     changeset = Video.changeset(%Video{}, @invalid_attrs)
     refute changeset.valid?
   end
+
+  test "slugify the video" do
+    changeset = Video.changeset(%Video{}, @valid_attrs)
+    assert changeset.changes.slug == "some-content"
+  end
 end
