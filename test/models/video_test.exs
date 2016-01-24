@@ -20,4 +20,9 @@ defmodule Rumbl.VideoTest do
     changeset = Video.changeset(%Video{}, @valid_attrs)
     assert changeset.changes.slug == "some-content"
   end
+
+  test "overriding to_param" do
+    video = %Video{id: 1, slug: "slug"}
+    assert Rumbl.Router.Helpers.watch_path(%URI{}, :show, video) == "/watch/1-slug"
+  end
 end
